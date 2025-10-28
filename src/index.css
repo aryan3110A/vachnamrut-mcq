@@ -8,35 +8,54 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Spiritual color palette inspired by temple aesthetics */
+    --background: 35 40% 96%;
+    --foreground: 25 35% 20%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 40 45% 98%;
+    --card-foreground: 25 35% 20%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 40 45% 98%;
+    --popover-foreground: 25 35% 20%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Saffron/Orange - Primary spiritual color */
+    --primary: 25 85% 55%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Golden yellow - Divine accent */
+    --secondary: 45 95% 60%;
+    --secondary-foreground: 25 35% 20%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Soft cream - Muted areas */
+    --muted: 40 35% 92%;
+    --muted-foreground: 25 25% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Maroon/Deep red - Traditional accent */
+    --accent: 355 70% 40%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 40 30% 85%;
+    --input: 40 30% 85%;
+    --ring: 25 85% 55%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+    
+    /* Custom spiritual tokens */
+    --divine-gold: 45 95% 50%;
+    --temple-maroon: 355 70% 35%;
+    --sacred-saffron: 25 85% 55%;
+    --lotus-pink: 340 60% 70%;
+    
+    /* Gradient tokens */
+    --gradient-divine: linear-gradient(135deg, hsl(var(--sacred-saffron)) 0%, hsl(var(--divine-gold)) 100%);
+    --gradient-temple: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(40 35% 92%) 100%);
+    
+    /* Shadow tokens */
+    --shadow-divine: 0 10px 40px -10px hsl(var(--sacred-saffron) / 0.3);
+    --shadow-card: 0 4px 20px -2px hsl(25 35% 20% / 0.08);
 
     --sidebar-background: 0 0% 98%;
 
