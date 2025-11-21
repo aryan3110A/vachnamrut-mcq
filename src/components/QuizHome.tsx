@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { BookOpen, Sparkles, Heart, Users } from "lucide-react";
+import { BookOpen, Sparkles, Heart, Users, ScrollText } from "lucide-react";
 import swaminarayanBg from "@/assets/swaminarayan-bg.jpg";
 import mandirLogo from "@/assets/mandir-logo.png";
 
@@ -10,30 +10,36 @@ interface QuizHomeProps {
 
 const QuizHome = ({ onCategorySelect }: QuizHomeProps) => {
   const categories = [
+    // {
+    //   name: "Vachnamrut",
+    //   icon: BookOpen,
+    //   description: "Test your knowledge of the sacred Vachanamrut",
+    //   color: "from-sacred-saffron to-divine-gold"
+    // },
     {
-      name: "Vachnamrut",
-      icon: BookOpen,
-      description: "Test your knowledge of the sacred Vachanamrut",
+      name: "શિક્ષાપત્રી",
+      icon: ScrollText,
+      description: "શિક્ષાપત્રીના ધર્મો અને આજ્ઞાઓનું જ્ઞાન કસો",
       color: "from-sacred-saffron to-divine-gold"
     },
-    {
-      name: "Life of Bhagwan Swaminarayan",
-      icon: Sparkles,
-      description: "Explore the divine life and pastimes",
-      color: "from-temple-maroon to-accent"
-    },
-    {
-      name: "Philosophy & Teachings",
-      icon: Heart,
-      description: "Understand the eternal philosophy",
-      color: "from-primary to-secondary"
-    },
-    {
-      name: "Saints & Sadhus",
-      icon: Users,
-      description: "Learn about the glory of saints",
-      color: "from-accent to-primary"
-    }
+    // {
+    //   name: "Life of Bhagwan Swaminarayan",
+    //   icon: Sparkles,
+    //   description: "Explore the divine life and pastimes",
+    //   color: "from-temple-maroon to-accent"
+    // },
+    // {
+    //   name: "Philosophy & Teachings",
+    //   icon: Heart,
+    //   description: "Understand the eternal philosophy",
+    //   color: "from-primary to-secondary"
+    // },
+    // {
+    //   name: "Saints & Sadhus",
+    //   icon: Users,
+    //   description: "Learn about the glory of saints",
+    //   color: "from-accent to-primary"
+    // }
   ];
 
   return (
@@ -68,7 +74,7 @@ const QuizHome = ({ onCategorySelect }: QuizHomeProps) => {
         </div>
 
         {/* Category Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-6 max-w-4xl mx-auto">
           {categories.map((category, index) => {
             const Icon = category.icon;
             return (
