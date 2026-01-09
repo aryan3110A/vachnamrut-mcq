@@ -1,14 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { BookOpen, Sparkles, Heart, Users, ScrollText } from "lucide-react";
+import { BookOpen, Sparkles, Heart, Users, ScrollText, MessageCircle } from "lucide-react";
 import swaminarayanBg from "@/assets/swaminarayan-bg.jpg";
 import mandirLogo from "@/assets/mandir-logo.png";
 
 interface QuizHomeProps {
   onCategorySelect: (category: string) => void;
+  onQASelect: () => void;
 }
 
-const QuizHome = ({ onCategorySelect }: QuizHomeProps) => {
+const QuizHome = ({ onCategorySelect, onQASelect }: QuizHomeProps) => {
   const categories = [
     // {
     //   name: "Vachnamrut",
@@ -21,6 +22,13 @@ const QuizHome = ({ onCategorySelect }: QuizHomeProps) => {
       icon: ScrollText,
       description: "શિક્ષાપત્રીના ધર્મો અને આજ્ઞાઓનું જ્ઞાન કસો",
       color: "from-sacred-saffron to-divine-gold"
+    },
+    {
+      name: "Q&A Shikshapatri",
+      icon: MessageCircle,
+      description: "Explore the divine teachings through questions and answers",
+      color: "from-temple-maroon to-accent",
+      isQA: true
     },
     // {
     //   name: "Life of Bhagwan Swaminarayan",
@@ -82,7 +90,7 @@ const QuizHome = ({ onCategorySelect }: QuizHomeProps) => {
                 key={category.name}
                 className="group relative overflow-hidden bg-card/50 backdrop-blur border-2 border-border hover:border-primary/50 transition-all duration-300 hover:shadow-divine cursor-pointer animate-scale-in"
                 style={{ animationDelay: `${index * 100}ms` }}
-                onClick={() => onCategorySelect(category.name)}
+                onClick={() => category.isQA ? onQASelect() : onCategorySelect(category.name)}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-5 group-hover:opacity-10 transition-opacity`} />
                 <div className="relative p-6 md:p-8">

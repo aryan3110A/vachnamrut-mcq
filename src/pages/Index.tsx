@@ -2,9 +2,10 @@ import { useState } from "react";
 import QuizHome from "@/components/QuizHome";
 import QuizQuestion from "@/components/QuizQuestion";
 import QuizResults from "@/components/QuizResults";
+import ShikshapatriQA from "@/components/ShikshapatriQA";
 import { getRandomQuestions, Question } from "@/data/questions";
 
-type QuizState = "home" | "quiz" | "results";
+type QuizState = "home" | "quiz" | "results" | "qa";
 
 const Index = () => {
   const [quizState, setQuizState] = useState<QuizState>("home");
@@ -22,6 +23,10 @@ const Index = () => {
     setCorrectAnswers(0);
     setWrongAnswers(0);
     setQuizState("quiz");
+  };
+
+  const handleQASelect = () => {
+    setQuizState("qa");
   };
 
   const handleAnswer = (isCorrect: boolean) => {
@@ -61,7 +66,10 @@ const Index = () => {
   return (
     <>
       {quizState === "home" && (
-        <QuizHome onCategorySelect={handleCategorySelect} />
+        <QuizHome 
+          onCategorySelect={handleCategorySelect} 
+          onQASelect={handleQASelect}
+        />
       )}
       {quizState === "quiz" && questions.length > 0 && (
         <QuizQuestion
@@ -80,6 +88,9 @@ const Index = () => {
           onHome={handleHome}
           onRetry={handleRetry}
         />
+      )}
+      {quizState === "qa" && (
+        <ShikshapatriQA onHome={handleHome} />
       )}
     </>
   );
