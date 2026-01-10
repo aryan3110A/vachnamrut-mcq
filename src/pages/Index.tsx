@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import QuizHome from "@/components/QuizHome";
 import QuizQuestion from "@/components/QuizQuestion";
 import QuizResults from "@/components/QuizResults";
@@ -8,25 +9,46 @@ import { getRandomQuestions, Question } from "@/data/questions";
 type QuizState = "home" | "quiz" | "results" | "qa";
 
 const Index = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [quizState, setQuizState] = useState<QuizState>("home");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [wrongAnswers, setWrongAnswers] = useState(0);
+  const [isInitialized, setIsInitialized] = useState(false);
 
-  const handleCategorySelect = (category: string) => {
-    setSelectedCategory(category);
-    const randomQuestions = getRandomQuestions(category, 10);
-    setQuestions(randomQuestions);
-    setCurrentQuestion(0);
-    setCorrectAnswers(0);
-    setWrongAnswers(0);
-    setQuizState("quiz");
+  useEffect(() => {
+    if (location.pathname === "/MCQ") {
+      // For MCQ route, initialize with "શિક્ષાપત્રી"
+      setSelectedCategory("હેતુલક્ષી પ્રશ્નો ( MCQ )");
+      const randomQuestions = getRandomQuestions("શિક્ષાપત્રી", 10);
+      setQuestions(randomQuestions);
+      setCurrentQuestion(0);
+      setCorrectAnswers(0);
+      setWrongAnswers(0);
+      setQuizState("quiz");
+    } else if (location.pathname === "/Q&A") {
+      setQuizState("qa");
+    } else if (location.pathname === "/") {
+      setQuizState("home");
+      setSelectedCategory("");
+      setQuestions([]);
+      setCurrentQuestion(0);
+      setCorrectAnswers(0);
+      setWrongAnswers(0);
+    }
+  }, [location.pathname]);
+
+  const handleCategorySelect = (categoryKey: string, displayName: string) => {
+    // This is called from QuizHome when clicks happen
+    // Navigation is handled by QuizHome itself now
   };
 
   const handleQASelect = () => {
-    setQuizState("qa");
+    // This is called from QuizHome when clicks happen
+    // Navigation is handled by QuizHome itself now
   };
 
   const handleAnswer = (isCorrect: boolean) => {
@@ -46,12 +68,7 @@ const Index = () => {
   };
 
   const handleHome = () => {
-    setQuizState("home");
-    setSelectedCategory("");
-    setQuestions([]);
-    setCurrentQuestion(0);
-    setCorrectAnswers(0);
-    setWrongAnswers(0);
+    navigate("/");
   };
 
   const handleRetry = () => {
@@ -67,8 +84,8 @@ const Index = () => {
     <>
       {quizState === "home" && (
         <QuizHome 
-          onCategorySelect={handleCategorySelect} 
-          onQASelect={handleQASelect}
+          onCategorySelect={() => {}} 
+          onQASelect={() => {}}
         />
       )}
       {quizState === "quiz" && questions.length > 0 && (

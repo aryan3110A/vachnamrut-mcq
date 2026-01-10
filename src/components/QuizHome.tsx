@@ -1,15 +1,17 @@
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { BookOpen, Sparkles, Heart, Users, ScrollText, MessageCircle } from "lucide-react";
 import swaminarayanBg from "@/assets/swaminarayan-bg.jpg";
 import mandirLogo from "@/assets/mandir-logo.png";
 
 interface QuizHomeProps {
-  onCategorySelect: (category: string) => void;
+  onCategorySelect: (categoryKey: string, displayName: string) => void;
   onQASelect: () => void;
 }
 
 const QuizHome = ({ onCategorySelect, onQASelect }: QuizHomeProps) => {
+  const navigate = useNavigate();
   const categories = [
     // {
     //   name: "Vachnamrut",
@@ -18,12 +20,14 @@ const QuizHome = ({ onCategorySelect, onQASelect }: QuizHomeProps) => {
     //   color: "from-sacred-saffron to-divine-gold"
     // },
     {
+      id: "શિક્ષાપત્રી",
       name: "હેતુલક્ષી પ્રશ્નો ( MCQ )",
       icon: ScrollText,
       description: "શિક્ષાપત્રીના ધર્મો અને આજ્ઞાઓનું જ્ઞાન કસો",
       color: "from-sacred-saffron to-divine-gold"
     },
     {
+      id: "qa",
       name: "પ્રશ્નોત્તરી ( Q&A )",
       icon: MessageCircle,
       description: "Explore the divine teachings through questions and answers",
@@ -90,7 +94,15 @@ const QuizHome = ({ onCategorySelect, onQASelect }: QuizHomeProps) => {
                 key={category.name}
                 className="group relative overflow-hidden bg-card/50 backdrop-blur border-2 border-border hover:border-primary/50 transition-all duration-300 hover:shadow-divine cursor-pointer animate-scale-in"
                 style={{ animationDelay: `${index * 100}ms` }}
-                onClick={() => category.isQA ? onQASelect() : onCategorySelect(category.name)}
+                onClick={() => {
+                  if (category.isQA) {
+                    navigate("/Q&A");
+                    onQASelect();
+                  } else {
+                    navigate("/MCQ");
+                    onCategorySelect(category.id || category.name, category.name);
+                  }
+                }}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-5 group-hover:opacity-10 transition-opacity`} />
                 <div className="relative p-6 md:p-8">
