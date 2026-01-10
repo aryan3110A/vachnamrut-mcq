@@ -42,17 +42,17 @@ All colors MUST be HSL.
     --ring: 25 85% 55%;
 
     --radius: 0.75rem;
-    
+
     /* Custom spiritual tokens */
     --divine-gold: 45 95% 50%;
     --temple-maroon: 355 70% 35%;
     --sacred-saffron: 25 85% 55%;
     --lotus-pink: 340 60% 70%;
-    
+
     /* Gradient tokens */
     --gradient-divine: linear-gradient(135deg, hsl(var(--sacred-saffron)) 0%, hsl(var(--divine-gold)) 100%);
     --gradient-temple: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(40 35% 92%) 100%);
-    
+
     /* Shadow tokens */
     --shadow-divine: 0 10px 40px -10px hsl(var(--sacred-saffron) / 0.3);
     --shadow-card: 0 4px 20px -2px hsl(25 35% 20% / 0.08);
@@ -121,4 +121,72 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* DearFlip Customizations */
+._df_thumb {
+  width: 240px;
+  height: 360px;
+}
+
+._df_thumb ._df_book-title {
+  opacity: 1;
+  bottom: 0;
+}
+
+.df-outline-item {
+  color: hsl(var(--accent));
+}
+
+section.linkAnnotation a,
+a.linkAnnotation,
+a.customLinkAnnotation,
+.customHtmlAnnotation,
+.customVideoAnnotation {
+  opacity: 0;
+}
+
+.df-page-front:before,
+.df-page-back:before {
+  opacity: 0;
+}
+
+/* Touch Action Fix */
+#df_book_viewer {
+  touch-action: none;
+}
+
+/* Base page frame */
+.df-page {
+  background: #f4f4f4;
+  /* paper tone */
+}
+
+/* Inner content window */
+.df-page::before {
+  content: "";
+  position: absolute;
+  inset: 24px;
+  background: #ffffff;
+  border-radius: 2px;
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.08),
+    inset 0 6px 12px rgba(0, 0, 0, 0.05);
+  pointer-events: none;
+}
+
+/* Outer printed border */
+.df-page::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 6px solid #cfcfcf;
+  /* grey like in image */
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Make cover thicker */
+.df-page.df-cover::after {
+  border-width: 10px;
 }
