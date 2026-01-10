@@ -65,19 +65,13 @@ const QuizHome = ({ onCategorySelect, onQASelect }: QuizHomeProps) => {
 
   const categories = [
     {
-      id: "shikshapatri-mcq",
-      name: "હેતુલક્ષી પ્રશ્નો ( MCQ )",
-      icon: ScrollText,
-      description: "શિક્ષાપત્રીના ધર્મો અને આજ્ઞાઓનું જ્ઞાન કસો",
-      color: "from-sacred-saffron to-divine-gold"
-    },
-    {
       id: "shikshapatri-book",
       name: "શિક્ષાપત્રી",
       icon: BookOpen,
       description: "શિક્ષાપત્રી વાંચો અને જીવન પાવન કરો",
       color: "from-accent to-divine-gold",
-      isBook: true
+      isBook: true,
+      buttonText: "Read More"
     },
     {
       id: "qa",
@@ -85,7 +79,16 @@ const QuizHome = ({ onCategorySelect, onQASelect }: QuizHomeProps) => {
       icon: MessageCircle,
       description: "Explore the divine teachings through questions and answers",
       color: "from-temple-maroon to-accent",
-      isQA: true
+      isQA: true,
+      buttonText: "Read More"
+    },
+    {
+      id: "shikshapatri-mcq",
+      name: "હેતુલક્ષી પ્રશ્નો ( MCQ )",
+      icon: ScrollText,
+      description: "Answer 10 questions to test your knowledge and receive divine blessings",
+      color: "from-sacred-saffron to-divine-gold",
+      buttonText: "Start Quiz"
     }
   ];
 
@@ -164,7 +167,7 @@ const QuizHome = ({ onCategorySelect, onQASelect }: QuizHomeProps) => {
                     className="w-full mt-6 bg-gradient-divine hover:opacity-90 transition-opacity shadow-md font-inter"
                     size="lg"
                   >
-                    {category.isBook ? "Read Book" : "Start Quiz"}
+                    {category.buttonText || "Start Quiz"}
                   </Button>
                 </div>
               </Card>
