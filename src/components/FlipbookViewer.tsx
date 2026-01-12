@@ -97,7 +97,7 @@ export default function FlipbookViewer({ pdfUrl, onClose }: FlipbookViewerProps)
                 hard: "cover", // User requested
 
                 // Shadows & depth
-                shadowOpacity: 0.7, // Updated opacity
+                shadowOpacity: 0.1, // Updated opacity
 
                 // Hard cover detail (keeping these as they complement the 'hard: all' setting)
                 cover: true,
@@ -115,7 +115,7 @@ export default function FlipbookViewer({ pdfUrl, onClose }: FlipbookViewerProps)
                 direction: 1, // LTR
                 forceFit: true,
                 disablePartialLoad: true, // User Request: Load pages before turning
-                pdfRenderQuality: 1.0,
+                pdfRenderQuality: 0.9,
             };
 
             // If instance already exists, maybe destroy it? dflip is tricky with react re-renders
