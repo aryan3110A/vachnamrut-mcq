@@ -5,7 +5,6 @@ import { Card } from "@/components/ui/card";
 import { BookOpen, Sparkles, Heart, Users, ScrollText, MessageCircle } from "lucide-react";
 import swaminarayanBg from "@/assets/swaminarayan-bg.jpg";
 import mandirLogo from "@/assets/mandir-logo.png";
-import FlipbookViewer from "./FlipbookViewer";
 import { useState } from "react";
 
 interface QuizHomeProps {
@@ -65,28 +64,10 @@ const QuizHome = ({ onCategorySelect, onQASelect }: QuizHomeProps) => {
 
   const categories = [
     {
-      id: "shikshapatri-book",
-      name: "શિક્ષાપત્રી",
-      icon: BookOpen,
-      description: "શિક્ષાપત્રી વાંચો અને જીવન પાવન કરો",
-      color: "from-accent to-divine-gold",
-      isBook: true,
-      buttonText: "Read More"
-    },
-    {
-      id: "qa",
-      name: "પ્રશ્નોત્તરી ( Q&A )",
-      icon: MessageCircle,
-      description: "Explore the divine teachings through questions and answers",
-      color: "from-temple-maroon to-accent",
-      isQA: true,
-      buttonText: "Read More"
-    },
-    {
-      id: "shikshapatri-mcq",
-      name: "હેતુલક્ષી પ્રશ્નો ( MCQ )",
+      id: "vachnamrut-mcq",
+      name: "વચનામૃત (MCQ)",
       icon: ScrollText,
-      description: "Answer 10 questions to test your knowledge and receive divine blessings",
+      // description: "Answer 10 questions to test your knowledge and receive divine blessings",
       color: "from-sacred-saffron to-divine-gold",
       buttonText: "Start Quiz"
     }
@@ -128,7 +109,7 @@ const QuizHome = ({ onCategorySelect, onQASelect }: QuizHomeProps) => {
         </div>
 
         {/* Category Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-6 max-w-sm mx-auto mb-16">
           {categories.map((category, index) => {
             const Icon = category.icon;
             return (
@@ -137,15 +118,8 @@ const QuizHome = ({ onCategorySelect, onQASelect }: QuizHomeProps) => {
                 className="group relative overflow-hidden bg-card/50 backdrop-blur border-2 border-border hover:border-primary/50 transition-all duration-300 hover:shadow-divine cursor-pointer animate-scale-in flex flex-col"
                 style={{ animationDelay: `${index * 100}ms` }}
                 onClick={() => {
-                  if (category.isQA) {
-                    navigate("/Q&A");
-                    onQASelect();
-                  } else if (category.isBook) {
-                    setIsBookOpen(true);
-                  } else {
-                    navigate("/MCQ");
-                    onCategorySelect(category.id, category.name);
-                  }
+                  navigate("/MCQ");
+                  onCategorySelect(category.id, category.name);
                 }}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-5 group-hover:opacity-10 transition-opacity`} />
@@ -155,12 +129,12 @@ const QuizHome = ({ onCategorySelect, onQASelect }: QuizHomeProps) => {
                       <Icon className="h-6 w-6 text-white" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-playfair text-xl md:text-2xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                      <h3 className="font-playfair text-xl md:text-xl font-semibold text-foreground mb-0 pt-2 group-hover:text-primary transition-colors">
                         {category.name}
                       </h3>
-                      <p className="text-muted-foreground font-inter text-sm md:text-base">
+                      {/* <p className="text-muted-foreground font-inter text-sm md:text-base">
                         {category.description}
-                      </p>
+                      </p> */}
                     </div>
                   </div>
                   <Button
@@ -176,12 +150,12 @@ const QuizHome = ({ onCategorySelect, onQASelect }: QuizHomeProps) => {
         </div>
 
         {/* Book Viewer Modal */}
-        {isBookOpen && (
+        {/* {isBookOpen && (
           <FlipbookViewer
             pdfUrl="/pdfs/shikshapatri_swaminarayan.pdf"
             onClose={() => setIsBookOpen(false)}
           />
-        )}
+        )} */}
 
         {/* Footer Text */}
         <div className="text-center mt-12">

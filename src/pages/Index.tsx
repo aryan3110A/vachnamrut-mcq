@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import QuizHome from "@/components/QuizHome";
 import QuizQuestion from "@/components/QuizQuestion";
 import QuizResults from "@/components/QuizResults";
-import ShikshapatriQA from "@/components/ShikshapatriQA";
 import { getRandomQuestions, Question } from "@/data/questions";
 
 type QuizState = "home" | "quiz" | "results" | "qa";
@@ -21,9 +20,9 @@ const Index = () => {
 
   useEffect(() => {
     if (location.pathname === "/MCQ") {
-      // For MCQ route, initialize with "શિક્ષાપત્રી"
-      setSelectedCategory("હેતુલક્ષી પ્રશ્નો ( MCQ )");
-      const randomQuestions = getRandomQuestions("શિક્ષાપત્રી", 10);
+      // For MCQ route, initialize with "Vachnamrut"
+      setSelectedCategory("વચનામૃત");
+      const randomQuestions = getRandomQuestions("Vachnamrut", 10);
       setQuestions(randomQuestions);
       setCurrentQuestion(0);
       setCorrectAnswers(0);
@@ -83,9 +82,9 @@ const Index = () => {
   return (
     <>
       {quizState === "home" && (
-        <QuizHome 
-          onCategorySelect={() => {}} 
-          onQASelect={() => {}}
+        <QuizHome
+          onCategorySelect={() => { }}
+          onQASelect={() => { }}
         />
       )}
       {quizState === "quiz" && questions.length > 0 && (
@@ -106,9 +105,9 @@ const Index = () => {
           onRetry={handleRetry}
         />
       )}
-      {quizState === "qa" && (
+      {/* {quizState === "qa" && (
         <ShikshapatriQA onHome={handleHome} />
-      )}
+      )} */}
     </>
   );
 };
