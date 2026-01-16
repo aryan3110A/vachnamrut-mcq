@@ -71,7 +71,7 @@ const Index = () => {
   };
 
   const handleRetry = () => {
-    const randomQuestions = getRandomQuestions(selectedCategory, 10);
+    const randomQuestions = getRandomQuestions("Vachnamrut", 10);
     setQuestions(randomQuestions);
     setCurrentQuestion(0);
     setCorrectAnswers(0);
